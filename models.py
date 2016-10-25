@@ -126,14 +126,6 @@ class Game(ndb.Model):
         self.history.append({'message': result, 'guess': guess})
         self.put()
 
-
-class HistoryForm(messages.Message):
-
-    """Return history"""
-    history = messages.StringField(1, repeated=True)
-    date_created = messages.StringField(2)
-
-
 class GameForm(messages.Message):
 
     """GameForm for outbound game state information"""
@@ -181,12 +173,6 @@ class ScoreForms(messages.Message):
 
     """Return multiple ScoreForms"""
     items = messages.MessageField(ScoreForm, 1, repeated=True)
-
-
-class CancelForm(messages.Message):
-    user_name = messages.StringField(1, required=True)
-    urlsafe_key = messages.StringField(2, required=True)
-
 
 class StringMessage(messages.Message):
 

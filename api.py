@@ -15,8 +15,8 @@ from google.appengine.ext import ndb
 
 from models import User, Game, Score
 from models import StringMessage, GameForm
-from models import UserForm, UserForms, HistoryForm
-from models import GameForms, CancelForm, ScoreForm, ScoreForms
+from models import UserForm, UserForms, GameForms
+from models import ScoreForm, ScoreForms
 from utils import get_by_urlsafe
 
 import logging
