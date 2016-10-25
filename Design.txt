@@ -1,0 +1,26 @@
+What additional properties did you add to your models and why? 
+
+User model 
+I added activeGameKeys which held a list of all the urlsafe keys of each game. The purpose of this property was I needed a way to save and access a user's active games. When I use endpoints get_user_games  
+Also added wins, losses, and performace properties. These again, were more of a convinence for me access when needed. 
+ 
+ 
+Game model 
+I added topic, history, hidden, guesses, date_created 
+Topic was used to store some sentence would help the user guess the answer 
+hidden property, was the answer converted intp a list of blanks i.e. dog = ['_','_','_',] 
+guesses property, is a list of valid guesses 
+history property, list to store all the user's moves 
+ 
+ 
+Score model 
+I added a game and user key properties. Also, name, date, won, and attempt_remaining. Also added a to_form method to return a form version whenever called by user The reasoning for these properties was to display properties the user might be interested in when viewing a score.  
+ 
+What were some of the trade-offs or struggles you faced when implementing the new game logic? 
+
+
+Trying to understand how each piece connected was the most difficult and took the most time.   
+Failing to make my app more modular. I feel like the User model only needed the name and email properties everything else would get from Game model.  
+Get user games endpoint, I think, I could've done this better. I did not use the get parent key and so I just stored activegame keys in a list. Not good. 
+Get_high_score. The only way I thought one user's score could separate themselves from another score was least amount of guesses taken to finish. So I ordered by attempts remaining. 
+Get_user_rankings. I was only able to sort query by performace descending. I didn't understand how to impliment the tie breaker part. 
