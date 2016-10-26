@@ -4,9 +4,23 @@
 
 1.  Clone this project then add to project to Google App Engine (GAE)
 1.  Depending on your port number (i.e. 8080) type localhost:8080/_ah/api/explorer into browser to test endpoints
-1.  (Optional) Generate your client library(ies) with the endpoints tool.
- Deploy your application.
- 
+
+## Testing API
+1.  Create a new user, using the create_user endpoint. 
+2.  Use create_game to create a game. Remember to copy the
+    urlsafe_key property for later use.
+3.  Make a move, requires the urlsafe_key and a guess to start
+    reduces the attempt_remaining if guess is wrong until game is finished
+    or user guesses the answer. Game_over property is set True.
+4.  Get user games, requires username and email and lists all user's
+    ACTIVE games (game_over = False)
+5.  Cancelling a game, requires username and game's urlsafe_key.
+    Users are not permitted to remove completed games.
+6.  Getting high scores endpoints, returns all scores ordered by
+    attempts remaining (descending) least attempts to solve = better
+7.  Getting user rankings, returns all users ordered by their performance
+8.  Getting game history, requires game urlsafe_key which returns
+    all the moves made during a certain game
  
  
 ##Game Description:
