@@ -18,18 +18,27 @@ class SendReminderEmail(webapp2.RequestHandler):
         Called every 3 hours using a cron job"""
         app_id = app_identity.get_application_id()
         # Get unfinished games
-        games = Game.query(Game.game_over == False)
 
-        for game in games:
-            user = game.key.parent().get()
-            subject = 'This is a reminder from HangmanApi!'
-            body = 'Hello {}, ready to finish your game?'.format(user.name)
-            # This will send test emails, the arguments to send_mail are:
-            # from, to, subject, body
-            mail.send_mail('noreply@{}.appspotmail.com'.format(app_id),
-                           user.email,
-                           subject,
-                           body)
+        users = User.query()
+        for user in users:
+            # Get all the users games.
+            games = Game.query(Game.user == user.key, Game.game_over == False)
+
+            for game in games:
+                logging.debug(game)
+                subject = 'This is a reminder from HangmanApi!'
+                body = ('Hello {}, ready to finish your game? '
+                        'Your topic was {}, and you still have'
+                        ' {} attempts left!').format(
+                    user.name,
+                    game.topic,
+                    game.attempts_remaining)
+                # This will send test emails, the arguments to send_mail are:
+                # from, to, subject, body
+                mail.send_mail('noreply@{}.appspotmail.com'.format(app_id),
+                               user.email,
+                               subject,
+                               body)
 
 
 app = webapp2.WSGIApplication([

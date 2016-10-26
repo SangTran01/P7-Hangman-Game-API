@@ -237,10 +237,10 @@ class HangmanApi(remote.Service):
         else:
             # delete activegame from user
             if request.urlsafe_game_key in user.activeGameKeys:
+                # remove key from user activegame list
                 user.activeGameKeys.remove(request.urlsafe_game_key)
-
-                ndb.Key(urlsafe=request.urlsafe_game_key).delete()
-
+                # delete game
+                game.key.delete()
                 user.put()
                 return StringMessage(message='Game has been cancelled')
 
