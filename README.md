@@ -17,6 +17,11 @@ an appropriate answer for the user. Each game can be retrieved
 or played by using the path parameter
 `urlsafe_game_key`.
 
+##How Score Keeping Works:
+Whenever a user completes a game either by winning or losing a game
+this adds 1 point to the user's wins or losses property. The user's performance
+property is then calculated and displayed as win/loss ratio. (wins / total games * 100)
+
 ##Files Included:
  - api.py: Contains endpoints and game playing logic.
  - app.yaml: App configuration.
