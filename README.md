@@ -1,4 +1,4 @@
-#Project 7 fullstack
+#P7 Hangman Game API
 
 ## Set-Up Instructions:
 
